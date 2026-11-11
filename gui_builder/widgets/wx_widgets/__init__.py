@@ -1,5 +1,8 @@
 """wxPython widget implementations and shared widget contracts."""
 
+# Re-exported: the module form of wx_widgets exposed Widget, and wx_utils
+# imports it from here (smart_list_widgets.py).
+from ..widget import Widget
 from .base import (
     logger,
     ControlType,

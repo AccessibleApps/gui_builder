@@ -121,3 +121,14 @@ def test_responsive_panel_uses_shared_widget_contract(app):
         assert panel.control.GetSizer().GetOrientation() == wx.HORIZONTAL
     finally:
         window.widget.control.Destroy()
+
+
+def test_package_keeps_the_module_exports_wx_utils_imports():
+    # wx_utils/smart_list_widgets.py imports these three names; when the
+    # package dropped Widget, every frozen app using wx_utils died at startup.
+    from gui_builder.widgets.widget import Widget
+    from gui_builder.widgets.wx_widgets import FieldType, WXWidget
+    from gui_builder.widgets.wx_widgets import Widget as exported
+
+    assert exported is Widget
+    assert WXWidget and FieldType
